@@ -1,7 +1,7 @@
 import java.util.ArrayList;
 
 public class CPU {
-    ArrayList<Boat> cpuBoats;
+    Boat[] cpuBoats = new Boat[5];
 
     public boolean cpuMove() {
         return false;
@@ -12,23 +12,23 @@ public class CPU {
             switch (i) {
                 case 0:
                     Boat carrier = new Boat("AircraftCarrier", 5, 'A');
-                    cpuBoats.add(carrier);
+                    cpuBoats[i] = carrier;
                     break;
                 case 1:
                     Boat battleship = new Boat("Battleship", 4, 'B');
-                    cpuBoats.add(battleship);
+                    cpuBoats[i] = battleship;
                     break;
                 case 2:
                     Boat cruiser = new Boat("Cruiser", 3, 'C');
-                    cpuBoats.add(cruiser);
+                    cpuBoats[i] = cruiser;
                     break;
                 case 3:
                     Boat sub = new Boat("Submarine", 3, 'S');
-                    cpuBoats.add(sub);
+                    cpuBoats[i] = sub;
                     break;
                 case 4:
                     Boat destroyer = new Boat("Destroyer", 2, 'D');
-                    cpuBoats.add(destroyer);
+                    cpuBoats[i] = destroyer;
                     break;
             }
             return true;

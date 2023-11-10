@@ -1,4 +1,3 @@
-import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Main {
@@ -6,8 +5,11 @@ public class Main {
         Scanner scanner = new Scanner(System.in);
 
         CPU cpu = new CPU();
+        cpu.populateBoatCpu();
         System.out.println("What's your username?");
         Player player = new Player(scanner.next());
+        player.populateBoatPlayer();
+
 
 
         Playfield playfield = new Playfield();
