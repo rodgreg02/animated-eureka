@@ -4,6 +4,7 @@ public class Boat {
     int size;
     int hitAmount;
     boolean isDestroyed;
+    boolean isPlaced;
 
     public Boat(String name, int size, char mark){
         this.name = name;
@@ -11,5 +12,6 @@ public class Boat {
         this.size = size;
         this.hitAmount = 0;
         this.isDestroyed = false;
+        this.isPlaced = false;
     }
 }
