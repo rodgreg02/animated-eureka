@@ -1,6 +1,6 @@
 import java.util.ArrayList;
 
-public class CPU {
+public class CPU extends  Moves{
     Boat[] cpuBoats = new Boat[5];
 
     public boolean cpuMove() {

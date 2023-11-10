@@ -16,12 +16,14 @@ public class Playfield {
     }
 
     public void drawField(){
+        String BLUE_BRIGHT = "\033[0;94m";
+        String ANSI_RESET = "\u001B[0m";
         System.out.println("CPU's Ocean:");
         for (int i = 0; i < playFieldCpu.length; i++) {
             System.out.println("");
             System.out.print("|---|---|---|---|---|---|---|---|---|---|\n");
             for (int j = 0; j < playFieldCpu[i].length; j++) {
-                System.out.print((j == 0)? i + " " + playFieldCpu[i][j] + " | ":"" + playFieldCpu[i][j] + " | ");
+                System.out.print((j == 0)? i + " " + BLUE_BRIGHT + playFieldCpu[i][j] +ANSI_RESET + " | ":"" + BLUE_BRIGHT +playFieldCpu[i][j] + ANSI_RESET+ " | ");
             }
             System.out.print((i == 9)? "\n| A | B | C | D | E | F | G | H | I | J |": "");
         }
@@ -30,7 +32,7 @@ public class Playfield {
         System.out.println("");
         System.out.print("|---|---|---|---|---|---|---|---|---|---|\n");
         for (int j = 0; j < playFieldPlr[i].length; j++) {
-            System.out.print((j == 0)?i + " " + playFieldPlr[i][j] + " | ":"" + playFieldPlr[i][j] + " | ");
+            System.out.print((j == 0)?i + " " + BLUE_BRIGHT +playFieldPlr[i][j] + ANSI_RESET +" | ":"" + BLUE_BRIGHT +playFieldPlr[i][j] + ANSI_RESET + " | ");
         }
         System.out.print((i == 9)? "\n| A | B | C | D | E | F | G | H | I | J |": "");
     }
