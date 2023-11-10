@@ -1,6 +1,6 @@
 import java.util.Scanner;
 
-public class Player {
+public class Player extends Moves{
     String username;
     int score;
     Boat[] playerBoats = new Boat[5];
@@ -9,7 +9,7 @@ public class Player {
         this.username = username;
     }
 
-    public boolean populateBoatPlayer(){
+    public boolean r(){
         for (int i = 0; i <= 4; i++) {
             switch(i){
                 case 0:
@@ -35,6 +35,11 @@ public class Player {
             }
         }
         return true;
+    }
+
+
+    public boolean setShips(){
+        return false;
     }
 
     public boolean playerMove(){
