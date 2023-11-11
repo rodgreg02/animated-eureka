@@ -1,11 +1,11 @@
 import java.util.Scanner;
 
-public class Moves {
+public class Moves extends Playfield{
 
-    public Boat[] addShipTypes(){
+    public Boat[] addShipTypes() {
         Boat[] defaultBoats = new Boat[5];
         for (int i = 0; i <= 4; i++) {
-            switch(i){
+            switch (i) {
                 case 0:
                     Boat carrier = new Boat("AircraftCarrier", 5, 'A');
                     defaultBoats[i] = carrier;
@@ -19,7 +19,7 @@ public class Moves {
                     defaultBoats[i] = cruiser;
                     break;
                 case 3:
-                    Boat sub = new Boat("Submarine", 3,'S');
+                    Boat sub = new Boat("Submarine", 3, 'S');
                     defaultBoats[i] = sub;
                     break;
                 case 4:
@@ -30,11 +30,12 @@ public class Moves {
         }
         return defaultBoats;
     }
+
     public int[] coordToIndex(String coord) {
         int[] indexes = new int[2];
         int verticalIndex = 0;
         int horizontalIndex = 0;
-        if(coord.length() == 2) {
+        if (coord.length() == 2) {
             String[] coord0 = coord.split("");
             for (int i = 0; i < coord.length(); i++) {
                 if (coord0[i].equals("[A,B,C,D,E,F,G,H,I,K]")) {
@@ -82,21 +83,22 @@ public class Moves {
         return null;
     }
 
-    public boolean setShips(Boat[] boat){
-        boolean shipIsSet = false;
-        Scanner scanner = new Scanner(System.in);
-        while(!shipIsSet){
-            System.out.println("You are placing ship " );
-            System.out.println("What coordinates to set the ship Provide them (A0)");
-            int [] firstCoord = coordToIndex(scanner.next());
-        }
-        return  false;
-    }
+    public boolean setShips(Boat[] boat, String coord1, String coord2, int i) {
+        Playfield playfield = new Playfield();
+        int[] coordArray1 = coordToIndex(coord1);
+        int[] coordArray2 = coordToIndex(coord2);
+        if ((coordArray1[0] == coordArray2[0] || coordArray1[1] == coordArray2[1]) && (coordArray1[0] - coordArray2[0] == boat[i].size || coordArray1[1] - coordArray2[1] == boat[i].size)) {
 
-    public void hitMoves(){
+            return true;
+        } else {
+            return false;
+        }
+
+    /*public void hitMoves(){
         Scanner scanner = new Scanner(System.in);
         System.out.println("What coordinates to hit CPT? Provide them (A0)");
         coordToIndex(scanner.next());
-    }
+    }*/
 
+    }
 }

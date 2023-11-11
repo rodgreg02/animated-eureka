@@ -25,7 +25,7 @@ public class Playfield {
             for (int j = 0; j < playFieldCpu[i].length; j++) {
                 System.out.print((j == 0)? i + " " + BLUE_BRIGHT + playFieldCpu[i][j] +ANSI_RESET + " | ":"" + BLUE_BRIGHT +playFieldCpu[i][j] + ANSI_RESET+ " | ");
             }
-            System.out.print((i == 9)? "\n| A | B | C | D | E | F | G | H | I | J |": "");
+            System.out.print((i == 9)? "\n| A | B | C | D | E | F | G | H | I | J |\n": "");
         }
         System.out.println("\n\n\nPlayer's Ocean:");
     for (int i = 0; i < playFieldPlr.length; i++) {
