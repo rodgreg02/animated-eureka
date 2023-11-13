@@ -38,7 +38,7 @@ public class Playfield {
     }
 }
 
-    public void placeShip(int[] coords) {
+    public void placeShip(int[] coords,int x, Boat[] boat) {
         int endY = 0;
         int endX = 0;
         int startY = 0;
@@ -62,7 +62,7 @@ public class Playfield {
 
         for (int i = startX; i <= endX; i++) {
             for (int j = startY; j <= endY; j++) {
-                playFieldPlr[i][j] ='A';
+                playFieldPlr[i][j] = boat[x].mark;
             }
         }
     }

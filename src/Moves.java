@@ -153,8 +153,8 @@ public class Moves extends Playfield {
             boolean sameCol = coordArray1[1] == coordArray2[1];
 
             //  Verificar pelo tamanho do ship
-            if ((sameRow && coordArray1[1] - coordArray2[1] + 1 == size) ||
-                    (sameCol && coordArray1[0] - coordArray2[0] + 1 == size)) {
+            if ((sameRow && coordArray2[1] - coordArray1[1] + 1 == size) ||
+                    (sameCol && coordArray2[0] - coordArray1[0] + 1 == size)) {
 
                 // Criar um array para guardar e o index dos ships
                 int[] fullArray = new int[5];
