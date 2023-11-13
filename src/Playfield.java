@@ -38,6 +38,35 @@ public class Playfield {
     }
 }
 
+    public void placeBoat(int[] coords) {
+        int endY = 0;
+        int endX = 0;
+        int startY = 0;
+        int startX = 0;
+        for (int i = 0; i < coords.length; i++) {
+            switch (i){
+                case 0:
+                    startY = coords[i];
+                    break;
+                case 1:
+                    startX = coords[i];
+                    break;
+                case 2:
+                    endY = coords[i];
+                    break;
+                case 3:
+                    endX = coords[i];
+                    break;
+            }
+        }
+
+        for (int i = startX; i <= endX; i++) {
+            for (int j = startY; j <= endY; j++) {
+                playFieldPlr[i][j] ='A';
+            }
+        }
+    }
+
 //public boolean checkPlayerHit(int horizontal, int vertical){
        // if(playFieldCpu[])
 //}
