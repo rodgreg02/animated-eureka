@@ -1,5 +1,3 @@
-
-
 public class Player extends Moves{
     String username;
     int score;

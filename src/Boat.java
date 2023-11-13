@@ -6,7 +6,7 @@ public class Boat {
     boolean isDestroyed;
     boolean isPlaced;
 
-    public Boat(String name, int size, char mark){
+    public Boat(String name, int size, char mark) {
         this.name = name;
         this.mark = mark;
         this.size = size;

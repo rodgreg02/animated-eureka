@@ -1,5 +1,3 @@
-
-
 public class Moves extends Playfield {
 
     public Boat[] addShipTypes() {
@@ -82,83 +80,103 @@ public class Moves extends Playfield {
                     System.out.println("What? Quickly Captain, time's running out! We need to strike them.");
                     break;
             }
-                switch (coord0[1]) {
-                    case "1":
-                        indexes[1] = 1;
-                        check1 = true;
-                        break;
-                    case "2":
-                        indexes[1] = 2;
-                        check1 = true;
-                        break;
-                    case "3":
-                        indexes[1] = 3;
-                        check1 = true;
-                        break;
-                    case "4":
-                        indexes[1] = 4;
-                        check1 = true;
-                        break;
-                    case "5":
-                        indexes[1] = 5;
-                        check1 = true;
-                        break;
-                    case "6":
-                        indexes[1] = 6;
-                        check1 = true;
-                        break;
-                    case "7":
-                        indexes[1] = 7;
-                        check1 = true;
-                        break;
-                    case "8":
-                        indexes[1] = 8;
-                        check1 = true;
-                        break;
-                    case "9":
-                        indexes[1] = 9;
-                        check1 = true;
-                        break;
-                    case "0":
-                        indexes[1] = 0;
-                        check1 = true;
-                        break;
-                    default:
-                        System.out.println("What? Quickly Captain, time's running out! We need to strike them.");
-                        break;
-                }
-                if (check1 || check2) {
-                    return indexes;
-                } else {
-                    return null;
-                }
+            switch (coord0[1]) {
+                case "1":
+                    indexes[1] = 1;
+                    check1 = true;
+                    break;
+                case "2":
+                    indexes[1] = 2;
+                    check1 = true;
+                    break;
+                case "3":
+                    indexes[1] = 3;
+                    check1 = true;
+                    break;
+                case "4":
+                    indexes[1] = 4;
+                    check1 = true;
+                    break;
+                case "5":
+                    indexes[1] = 5;
+                    check1 = true;
+                    break;
+                case "6":
+                    indexes[1] = 6;
+                    check1 = true;
+                    break;
+                case "7":
+                    indexes[1] = 7;
+                    check1 = true;
+                    break;
+                case "8":
+                    indexes[1] = 8;
+                    check1 = true;
+                    break;
+                case "9":
+                    indexes[1] = 9;
+                    check1 = true;
+                    break;
+                case "0":
+                    indexes[1] = 0;
+                    check1 = true;
+                    break;
+                default:
+                    System.out.println("What? Quickly Captain, time's running out! We need to strike them.");
+                    break;
             }
-       return null; }
-
+            if (check1 || check2) {
+                return indexes;
+            } else {
+                return null;
+            }
+        }
+        return null;
+    }
 
 
     public int[] setShips(Boat[] boat, String coord1, String coord2, int i) {
-        int[] coordArray1 = coordToIndex(coord1);
-        int[] coordArray2 = coordToIndex(coord2);
-       // if ((coordArray1[0] == coordArray2[0] || coordArray1[1] == coordArray2[1]) && (coordArray1[0] - coordArray2[0] == boat[i].size || coordArray1[1] - coordArray2[1] == boat[i].size)) {
-            int[] fullArray = new int[4];
-        for (int j = 0; j < fullArray.length; j++) {
-            if(j < 2){
-                fullArray[j] = coordArray1[j];
+        // Converter coordenadas para index values
+        while (true) {
+            int[] coordArray1 = coordToIndex(coord1);
+            int[] coordArray2 = coordToIndex(coord2);
+
+            // Verificar se sao válidas
+            if (coordArray1 == null || coordArray2 == null) {
+                System.out.println("Invalid coordinates Captain! Quickly please");
+                return null;
             }
-            else{
-                fullArray[j] = coordArray2[j-2];
+
+            // Verificar se o ship tá na mesmo row/column
+            int size = boat[i].size;
+            boolean sameRow = coordArray1[0] == coordArray2[0];
+            boolean sameCol = coordArray1[1] == coordArray2[1];
+
+            //  Verificar pelo tamanho do ship
+            if ((sameRow && coordArray1[1] - coordArray2[1] + 1 == size) ||
+                    (sameCol && coordArray1[0] - coordArray2[0] + 1 == size)) {
+
+                // Criar um array para guardar e o index dos ships
+                int[] fullArray = new int[5];
+
+                for (int j = 0; j < fullArray.length; j++) {
+                    if (j < 2) {
+                        fullArray[j] = coordArray1[j];
+                    } else if (j < 4) {
+                        fullArray[j] = coordArray2[j - 2];
+                    } else {
+                        fullArray[j] = i; // a guardar no array
+                    }
+                }
+                return fullArray;
+            } else {
+                System.out.println("Invalid ship size or placement, focus Captain!");
+                return null;
             }
         }
-            return fullArray;
-        //} else {
-            //return false;
-        }
-
-    //}
-
-
+    }
 }
+
     /*public void hitMoves(){
         Scanner scanner = new Scanner(System.in);
         System.out.println("What coordinates to hit CPT? Provide them (A0)");

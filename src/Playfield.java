@@ -38,7 +38,7 @@ public class Playfield {
     }
 }
 
-    public void placeBoat(int[] coords) {
+    public void placeShip(int[] coords) {
         int endY = 0;
         int endX = 0;
         int startY = 0;

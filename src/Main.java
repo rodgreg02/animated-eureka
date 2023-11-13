@@ -23,10 +23,10 @@ public class Main {
             Scanner scanner2 = new Scanner(System.in);
             System.out.println("\nInsert coordinates to place ship, and the end coordinates for the ship.");
             System.out.println("The ship you,re setting needs " + player.playerBoats[i].size + " spaces");
-            playfield.placeBoat(player.setShips(player.playerBoats, scanner0.next(), scanner2.next(), i));
+            playfield.placeShip(player.setShips(player.playerBoats, scanner0.next(), scanner2.next(), i));
             i++;
             playfield.drawField();
         }
 
     }
-    }
+}
