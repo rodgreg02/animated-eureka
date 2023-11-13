@@ -16,6 +16,7 @@ public class Main {
         playfield.createField();
         playfield.drawField();
 
+        System.out.println("boas");
 
         int i = 0;
         while (!gameOver) {
