@@ -38,7 +38,7 @@ public class Playfield {
     }
 }
 
-    public void placeShip(int[] coords,int x, Boat[] boat) {
+    public void placeShip(int[] coords,int x, Boat[] boat,char who) {
         int endY = 0;
         int endX = 0;
         int startY = 0;
@@ -60,14 +60,19 @@ public class Playfield {
             }
         }
 
+        if(who == '1'){
         for (int i = startX; i <= endX; i++) {
             for (int j = startY; j <= endY; j++) {
                 playFieldPlr[i][j] = boat[x].mark;
             }
         }
+        }
+        else if(who == 'c'){
+            for (int i = startX; i <= endX; i++) {
+                for (int j = startY; j <= endY; j++) {
+                    playFieldCpu[i][j] = boat[x].mark;
+                }
+        }
     }
-
-//public boolean checkPlayerHit(int horizontal, int vertical){
-       // if(playFieldCpu[])
-//}
+}
 }

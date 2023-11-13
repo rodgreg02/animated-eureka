@@ -175,6 +175,7 @@ public class Moves extends Playfield {
             }
         }
     }
+
 }
 
     /*public void hitMoves(){
