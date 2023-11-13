@@ -25,7 +25,7 @@ public class Playfield {
             for (int j = 0; j < playFieldCpu[i].length; j++) {
                 System.out.print((j == 0)? i + " " + BLUE_BRIGHT + playFieldCpu[i][j] +ANSI_RESET + " | ":"" + BLUE_BRIGHT +playFieldCpu[i][j] + ANSI_RESET+ " | ");
             }
-            System.out.print((i == 9)? "\n| A | B | C | D | E | F | G | H | I | J |": "");
+            System.out.print((i == 9)? "\n| A | B | C | D | E | F | G | H | I | J |\n": "");
         }
         System.out.println("\n\n\nPlayer's Ocean:");
     for (int i = 0; i < playFieldPlr.length; i++) {
@@ -37,6 +37,35 @@ public class Playfield {
         System.out.print((i == 9)? "\n| A | B | C | D | E | F | G | H | I | J |": "");
     }
 }
+
+    public void placeBoat(int[] coords) {
+        int endY = 0;
+        int endX = 0;
+        int startY = 0;
+        int startX = 0;
+        for (int i = 0; i < coords.length; i++) {
+            switch (i){
+                case 0:
+                    startY = coords[i];
+                    break;
+                case 1:
+                    startX = coords[i];
+                    break;
+                case 2:
+                    endY = coords[i];
+                    break;
+                case 3:
+                    endX = coords[i];
+                    break;
+            }
+        }
+
+        for (int i = startX; i <= endX; i++) {
+            for (int j = startY; j <= endY; j++) {
+                playFieldPlr[i][j] ='A';
+            }
+        }
+    }
 
 //public boolean checkPlayerHit(int horizontal, int vertical){
        // if(playFieldCpu[])
