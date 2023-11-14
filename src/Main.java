@@ -31,13 +31,13 @@ public class Main {
                 playfield.drawField();
                 i++;
             }
-        while(k < 5){
+       /* while(k < 5){
             System.out.println("\nHostiles are setting up for attack! Get ready!");
             int[] coords1 = cpu.setShips(cpu.cpuBoats,"Yee",k);
             playfield.placeShip(coords1,k,cpu.cpuBoats, 'c');
             playfield.drawField();
             k++;
-        }
+        }*/
 
 
 
