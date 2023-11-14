@@ -38,7 +38,7 @@ public class Playfield {
     }
 }
 
-    public void placeShip(int[] coords) {
+    public void placeShip(int[] coords,int x, Boat[] boat,char who) {
         int endY = 0;
         int endX = 0;
         int startY = 0;
@@ -60,14 +60,33 @@ public class Playfield {
             }
         }
 
-        for (int i = startX; i <= endX; i++) {
-            for (int j = startY; j <= endY; j++) {
-                playFieldPlr[i][j] ='A';
+        if(who == '1'){
+
+            if (startX == endX) {
+                // Vertical placement
+                for (int i = startX; i >= endX; i--) {
+                    for (int j = startY; j <= endY; j++) {
+                        playFieldPlr[i][j] = boat[x].mark;
+                    }
+                }
+            } else if (startY == endY) {
+                // Horizontal placement
+                for (int i = startX; i <= endX; i++) {
+                    for (int j = startY; j >= endY; j--) {
+                        playFieldPlr[i][j] = boat[x].mark;
+                    }
+                }
+            } else {
+                // Handle invalid placement or error condition
+                System.out.println("Invalid placement!");
             }
         }
+        else if(who == 'c'){
+            for (int i = startX; i <= endX; i++) {
+                for (int j = startY; j <= endY; j++) {
+                    playFieldCpu[i][j] = boat[x].mark;
+                }
+        }
     }
-
-//public boolean checkPlayerHit(int horizontal, int vertical){
-       // if(playFieldCpu[])
-//}
+}
 }

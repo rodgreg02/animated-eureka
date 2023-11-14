@@ -136,51 +136,9 @@ public class Moves extends Playfield {
 
 
     public int[] setShips(Boat[] boat, String coord1, String coord2, int i) {
-        // Converter coordenadas para index values
-        while (true) {
-            int[] coordArray1 = coordToIndex(coord1);
-            int[] coordArray2 = coordToIndex(coord2);
 
-            // Verificar se sao válidas
-            if (coordArray1 == null || coordArray2 == null) {
-                System.out.println("Invalid coordinates Captain! Quickly please");
-                return null;
-            }
-
-            // Verificar se o ship tá na mesmo row/column
-            int size = boat[i].size;
-            boolean sameRow = coordArray1[0] == coordArray2[0];
-            boolean sameCol = coordArray1[1] == coordArray2[1];
-
-            //  Verificar pelo tamanho do ship
-            if ((sameRow && coordArray1[1] - coordArray2[1] + 1 == size) ||
-                    (sameCol && coordArray1[0] - coordArray2[0] + 1 == size)) {
-
-                // Criar um array para guardar e o index dos ships
-                int[] fullArray = new int[5];
-
-                for (int j = 0; j < fullArray.length; j++) {
-                    if (j < 2) {
-                        fullArray[j] = coordArray1[j];
-                    } else if (j < 4) {
-                        fullArray[j] = coordArray2[j - 2];
-                    } else {
-                        fullArray[j] = i; // a guardar no array
-                    }
-                }
-                return fullArray;
-            } else {
-                System.out.println("Invalid ship size or placement, focus Captain!");
-                return null;
-            }
-        }
     }
 }
 
-    /*public void hitMoves(){
-        Scanner scanner = new Scanner(System.in);
-        System.out.println("What coordinates to hit CPT? Provide them (A0)");
-        coordToIndex(scanner.next());
-    }*/
 
 
