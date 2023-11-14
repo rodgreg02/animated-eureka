@@ -135,10 +135,26 @@ public class Moves extends Playfield {
     }
 
 
-    public int[] setShips(Boat[] boat, String coord1, String coord2, int i) {
+    public int[] setShips(Boat[] boat, String coord1, int i) {
+        // Converter coordenadas para index values
+        while (true) {
+            int[] coordArray1 = coordToIndex(coord1);
 
+            // Verificar se sao válidas
+            if (coordArray1 == null) {
+                System.out.println("Invalid coordinates Captain! Quickly please");
+                return null;
+            }
+
+            // Verificar se o ship tá na mesmo row/column
+            int size = boat[i].size;
+
+
+                return coordArray1;
+            }
+        }
     }
-}
 
+}
 
 
