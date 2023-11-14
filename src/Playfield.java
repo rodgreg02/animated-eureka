@@ -61,11 +61,25 @@ public class Playfield {
         }
 
         if(who == '1'){
-        for (int i = startX; i <= endX; i++) {
-            for (int j = startY; j <= endY; j++) {
-                playFieldPlr[i][j] = boat[x].mark;
+
+            if (startX == endX) {
+                // Vertical placement
+                for (int i = startX; i >= endX; i--) {
+                    for (int j = startY; j <= endY; j++) {
+                        playFieldPlr[i][j] = boat[x].mark;
+                    }
+                }
+            } else if (startY == endY) {
+                // Horizontal placement
+                for (int i = startX; i <= endX; i++) {
+                    for (int j = startY; j >= endY; j--) {
+                        playFieldPlr[i][j] = boat[x].mark;
+                    }
+                }
+            } else {
+                // Handle invalid placement or error condition
+                System.out.println("Invalid placement!");
             }
-        }
         }
         else if(who == 'c'){
             for (int i = startX; i <= endX; i++) {
