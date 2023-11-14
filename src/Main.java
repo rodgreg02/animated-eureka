@@ -37,7 +37,10 @@ public class Main {
             playfield.placeShip(coords1,k,cpu.cpuBoats, 'c');
             playfield.drawField();
             k++;
-        }*/
+
+        }
+        while (player.hitShip(scanner.next()),'1');
+while (cpu.hitShip())
 
 
 
