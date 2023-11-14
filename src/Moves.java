@@ -150,11 +150,35 @@ public class Moves extends Playfield {
             int size = boat[i].size;
 
 
-                return coordArray1;
-            }
+            return coordArray1;
         }
     }
 
+    public boolean hitShip(String coord, char who) {
+        int[] coordArray1 = coordToIndex(coord);
+        if (who == '1') {
+            if (playFieldPlr[coordArray1[0]][coordArray1[1]] != 'X' || playFieldPlr[coordArray1[0]][coordArray1[1]] != 'O') {
+                if (playFieldPlr[coordArray1[0]][coordArray1[1]] == '~') {
+                    playFieldPlr[coordArray1[0]][coordArray1[1]] = 'O';
+                    return false;
+                }
+                playFieldPlr[coordArray1[0]][coordArray1[1]] = 'X';
+                return true;
+            }
+        }
+        if (who == 'c') {
+            if (playFieldCpu[coordArray1[0]][coordArray1[1]] != 'X' || playFieldCpu[coordArray1[0]][coordArray1[1]] != 'O') {
+                if (playFieldCpu[coordArray1[0]][coordArray1[1]] == '~') {
+                    playFieldCpu[coordArray1[0]][coordArray1[1]] = 'O';
+                    return false;
+                }
+                playFieldCpu[coordArray1[0]][coordArray1[1]] = 'X';
+                return true;
+            }
+        } return false;
+    }
 }
+
+
 
 
