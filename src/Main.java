@@ -38,7 +38,8 @@ public class Main {
             playfield.drawField();
             k++;
         }
-
+        while (player.hitShip(scanner.next()),'1');
+while (cpu.hitShip())
 
 
         }
