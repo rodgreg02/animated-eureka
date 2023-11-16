@@ -173,8 +173,3 @@ public class Moves extends Playfield {
         } return false;
     }
 }
-
-
-
-
-

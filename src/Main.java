@@ -18,7 +18,6 @@ public class Main {
         playfield.drawField();
 
         int i = 0;
-        int k = 0;
 
 
         Scanner scanner0 = new Scanner(System.in);
@@ -29,28 +28,12 @@ public class Main {
             System.out.println("The ship you,re setting needs " + player.playerBoats[i].size + " spaces");
             int[] coords = player.setShips(player.playerBoats, scanner0.next(), i);
             playfield.placeShip(coords, i, player.playerBoats, '1');
+            int[] coords1 = cpu.setShips(cpu.cpuBoats,"Yee",i,playfield);
+            playfield.placeShip(coords1,i,cpu.cpuBoats, 'c');
             playfield.drawField();
             i++;
         }
-
-
-
-
-
-       /* while(k < 5){
-            System.out.println("\nHostiles are setting up for attack! Get ready!");
-            int[] coords1 = cpu.setShips(cpu.cpuBoats,"Yee",k);
-            playfield.placeShip(coords1,k,cpu.cpuBoats, 'c');
-            playfield.drawField();
-            k++;
-        while (!gameOver) {        }
-        while (player.hitShip(scanner.next()),'1');
-while (cpu.hitShip())
-
-
-
-        }
-
-    }*/
+        System.out.println("\nBoats are in position! Hostiles are setting up for attack! Combat positions!");
     }
 }
+

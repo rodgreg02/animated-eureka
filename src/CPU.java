@@ -8,28 +8,18 @@ public class CPU extends Moves {
         Moves move = new Moves();
         cpuBoats = move.addShipTypes();
     }
-    @Override
-    public int[] setShips(Boat[] boat, String coord1, String coord2, int i) {
-        int[] rndCoords = new int[4];
-        Random rnd = new Random();
-        rndCoords[0] = rnd.nextInt(9);
-        int a = 0;
-        int x = 0;
-        switch (rnd.nextInt(1)){
-            case 0:
-                rndCoords[2] = rndCoords[0];
-                x = 3;
-                break;
-            case 1:
-                rndCoords[3] = rndCoords[1];
-                x = 2;
-                break;
-        }
-        while(rndCoords[0] - a != boat[i].size){
-            a = rnd.nextInt(9);
 
+
+    public int[] setShips(Boat[] boat, String coord1, int i, Playfield playfield) {
+        int[] rndCoords = new int[3];
+        Random rnd = new Random();
+        boolean isValid = false;
+        while (!isValid) {
+            rndCoords[0] = rnd.nextInt(10);
+            rndCoords[1] = rnd.nextInt(10);
+            rndCoords[2] = rnd.nextInt(4);
+            isValid = playfield.checkCPU(rndCoords, i, boat);
         }
-        rndCoords[x] = a;
 
         return rndCoords;
     }

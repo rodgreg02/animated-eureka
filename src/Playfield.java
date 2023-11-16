@@ -48,19 +48,19 @@ public class Playfield {
 
     public void placeShip(int[] coords, int x, Boat[] boat, char who) {
 
-            Scanner scanner = new Scanner(System.in);
-            int startY = 0;
-            int startX = 0;
-            for (int i = 0; i < coords.length; i++) {
-                switch (i) {
-                    case 0:
-                        startY = coords[i];
-                        break;
-                    case 1:
-                        startX = coords[i];
-                        break;
-                }
+        Scanner scanner = new Scanner(System.in);
+        int startY = 0;
+        int startX = 0;
+        for (int i = 0; i < coords.length; i++) {
+            switch (i) {
+                case 0:
+                    startY = coords[i];
+                    break;
+                case 1:
+                    startX = coords[i];
+                    break;
             }
+        }
         try {
             if (who == '1') {
                 boolean outBounds = false;
@@ -134,18 +134,89 @@ public class Playfield {
                                 startX--;
                             }
                         }
-                            break;
-                        }
+                        break;
                 }
+            } else if (who == 'c') {
+                int c = coords[2];
+                for (int i = 0; i < boat[x].size; i++) {
+                    playFieldCpu[startX][startY] = boat[x].mark;
+                    switch (c) {
+                        case 0:
+                            startX--;
+                            break;
+                        case 1:
+                            startX++;
+                            break;
+                        case 2:
+                            startY++;
+                            break;
+                        case 3:
+                            startY--;
+                            break;
+                    }
 
-            //else if (who == 'c') {
-
-
-            //}
+                }
+            }
         } catch (Exception e) {
             System.out.println("Out of bounds. Try again!");
         }
+
+    }
+
+    public boolean checkCPU(int[] coords, int x, Boat[] boat) {
+        int b = coords[0];
+        int a = coords[1];
+        int c = coords[2];
+
+        int size = boat[x].size;
+
+        switch (c) {
+            case 0:
+                if (a - size < 0) {
+                    return false;
+                }
+                break;
+            case 1:
+                if (a + size > playFieldCpu.length) {
+                    return false;
+                }
+                break;
+            case 2:
+                if (b + size > playFieldCpu[a].length) {
+                    return false;
+                }
+                break;
+            case 3:
+                if (b - size < 0) {
+                    return false;
+                }
+                break;
+            default:
+                return false;
+        }
+
+
+        int tempA = a;
+        int tempB = b;
+        for (int i = 0; i < size; i++) {
+            if (playFieldCpu[tempA][tempB] != '~') {
+                return false;
+            }
+            switch (c) {
+                case 0:
+                    tempA--;
+                    break;
+                case 1:
+                    tempA++;
+                    break;
+                case 2:
+                    tempB++;
+                    break;
+                case 3:
+                    tempB--;
+                    break;
+            }
+        }
+        return true;
     }
 }
-
-
