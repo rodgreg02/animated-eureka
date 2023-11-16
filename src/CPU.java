@@ -8,7 +8,7 @@ public class CPU extends Moves {
         Moves move = new Moves();
         cpuBoats = move.addShipTypes();
     }
-    /*@Override
+    @Override
     public int[] setShips(Boat[] boat, String coord1, String coord2, int i) {
         int[] rndCoords = new int[4];
         Random rnd = new Random();
@@ -32,5 +32,5 @@ public class CPU extends Moves {
         rndCoords[x] = a;
 
         return rndCoords;
-    }*/
+    }
 }

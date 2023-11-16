@@ -125,7 +125,7 @@ public class Moves extends Playfield {
                     System.out.println("What? Quickly Captain, time's running out! We need to strike them.");
                     break;
             }
-            if (check1 || check2) {
+            if (check1 && check2) {
                 return indexes;
             } else {
                 return null;
@@ -136,18 +136,13 @@ public class Moves extends Playfield {
 
 
     public int[] setShips(Boat[] boat, String coord1, int i) {
-        // Converter coordenadas para index values
         while (true) {
             int[] coordArray1 = coordToIndex(coord1);
 
-            // Verificar se sao válidas
             if (coordArray1 == null) {
                 System.out.println("Invalid coordinates Captain! Quickly please");
                 return null;
             }
-
-            // Verificar se o ship tá na mesmo row/column
-            int size = boat[i].size;
 
 
             return coordArray1;
