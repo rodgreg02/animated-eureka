@@ -18,8 +18,8 @@ public class Playfield {
     }
 
     public void drawField() {
-        int counter = 9;
-        int counter1 = 9;
+        int counter = 0;
+        int counter1 = 0;
         String BLUE_BRIGHT = "\033[0;94m";
         String ANSI_RESET = "\u001B[0m";
         System.out.println("CPU's Ocean:");
@@ -29,8 +29,8 @@ public class Playfield {
             for (int j = 0; j < playFieldCpu[i].length; j++) {
                 System.out.print((j == 0) ? counter + " " + BLUE_BRIGHT + playFieldCpu[i][j] + ANSI_RESET + " | " : "" + BLUE_BRIGHT + playFieldCpu[i][j] + ANSI_RESET + " | ");
             }
-            System.out.print((i == 9) ? "\n| J | I | H | G | F | E | D | C | B | A |\n" : "");
-            counter--;
+            System.out.print((i == 9) ? "\n| A | B | C | D | E | F | G | H | I | J |\n" : "");
+            counter++;
 
         }
         System.out.println("\n\n\nPlayer's Ocean:");
@@ -40,61 +40,183 @@ public class Playfield {
             for (int j = 0; j < playFieldPlr[i].length; j++) {
                 System.out.print((j == 0) ? counter1 + " " + BLUE_BRIGHT + playFieldPlr[i][j] + ANSI_RESET + " | " : "" + BLUE_BRIGHT + playFieldPlr[i][j] + ANSI_RESET + " | ");
             }
-            System.out.print((i == 9) ? "\n| J | I | H | G | F | E | D | C | B | A |" : "");
-            counter1--;
+            System.out.print((i == 9) ? "\n| A | B | C | D | E | F | G | H | I | J |" : "");
+            counter1++;
 
         }
     }
 
     public void placeShip(int[] coords, int x, Boat[] boat, char who) {
+
         Scanner scanner = new Scanner(System.in);
         int startY = 0;
         int startX = 0;
         for (int i = 0; i < coords.length; i++) {
             switch (i) {
                 case 0:
-                    startX = coords[i];
-                    break;
-                case 1:
                     startY = coords[i];
                     break;
-            }
-        }
-
-        if (who == '1') {
-
-            System.out.println("Which direction do you wanna place the boat captain?\nl)Left r)Right d)Down u)Up");
-            switch (scanner.next()) {
-                case "l":
-                    for (int i = 0; i < boat[x].size; i++) {
-                        playFieldPlr[startX][startY] = boat[x].mark;
-                        startY--;
-                    }
-                    break;
-                case "r":
-                    for (int i = 0; i < boat[x].size; i++) {
-                        playFieldPlr[startX][startY] = boat[x].mark;
-                        startY++;
-                    }
-                    break;
-                case "d":
-                    for (int i = 0; i < boat[x].size; i++) {
-                        playFieldPlr[startX][startY] = boat[x].mark;
-                        startX++;
-                    }
-                    break;
-                case "u":
-                    for (int i = 0; i < boat[x].size; i++) {
-                        playFieldPlr[startX][startY] = boat[x].mark;
-                        startX--;
-                    }
+                case 1:
+                    startX = coords[i];
                     break;
             }
-
-        } else if (who == 'c') {
-
-
         }
+        try {
+            if (who == '1') {
+                boolean outBounds = false;
+                System.out.println("Which direction do you wanna place the boat captain?\nl)Left r)Right d)Down u)Up");
+                switch (scanner.next()) {
+
+                    case "l":
+                        outBounds = false;
+                        int check1 = startY;
+                        for (int i = 0; i < boat[x].size; i++) {
+                            if (playFieldPlr[startX][check1] != '~') {
+                                outBounds = true;
+                            }
+                            check1--;
+                        }
+                        if (!outBounds) {
+
+                            for (int i = 0; i < boat[x].size; i++) {
+                                playFieldPlr[startX][startY] = boat[x].mark;
+                                startY--;
+                            }
+                        }
+                        break;
+                    case "r":
+                        outBounds = false;
+                        int check2 = startY;
+                        for (int i = 0; i < boat[x].size; i++) {
+                            if (playFieldPlr[startX][check2] != '~') {
+                                outBounds = true;
+                            }
+                            check2++;
+                        }
+                        if (!outBounds) {
+
+                            for (int i = 0; i < boat[x].size; i++) {
+                                playFieldPlr[startX][startY] = boat[x].mark;
+                                startY++;
+                            }
+                        }
+                        break;
+                    case "d":
+                        outBounds = false;
+                        int check3 = startX;
+                        for (int i = 0; i < boat[x].size; i++) {
+                            if (playFieldPlr[check3][startY] != '~') {
+                                outBounds = true;
+                            }
+                            check3++;
+                        }
+                        if (!outBounds) {
+
+                            for (int i = 0; i < boat[x].size; i++) {
+                                playFieldPlr[startX][startY] = boat[x].mark;
+                                startX++;
+                            }
+                        }
+                        break;
+                    case "u":
+                        outBounds = false;
+                        int check4 = startX;
+                        for (int i = 0; i < boat[x].size; i++) {
+                            if (playFieldPlr[check4][startY] != '~') {
+                                outBounds = true;
+                            }
+                            check4--;
+                        }
+                        if (!outBounds) {
+
+                            for (int i = 0; i < boat[x].size; i++) {
+                                playFieldPlr[startX][startY] = boat[x].mark;
+                                startX--;
+                            }
+                        }
+                        break;
+                }
+            } else if (who == 'c') {
+                int c = coords[2];
+                for (int i = 0; i < boat[x].size; i++) {
+                    playFieldCpu[startX][startY] = boat[x].mark;
+                    switch (c) {
+                        case 0:
+                            startX--;
+                            break;
+                        case 1:
+                            startX++;
+                            break;
+                        case 2:
+                            startY++;
+                            break;
+                        case 3:
+                            startY--;
+                            break;
+                    }
+
+                }
+            }
+        } catch (Exception e) {
+            System.out.println("Out of bounds. Try again!");
+        }
+
+    }
+
+    public boolean checkCPU(int[] coords, int x, Boat[] boat) {
+        int b = coords[0];
+        int a = coords[1];
+        int c = coords[2];
+
+        int size = boat[x].size;
+
+        switch (c) {
+            case 0:
+                if (a - size < 0) {
+                    return false;
+                }
+                break;
+            case 1:
+                if (a + size > playFieldCpu.length) {
+                    return false;
+                }
+                break;
+            case 2:
+                if (b + size > playFieldCpu[a].length) {
+                    return false;
+                }
+                break;
+            case 3:
+                if (b - size < 0) {
+                    return false;
+                }
+                break;
+            default:
+                return false;
+        }
+
+
+        int tempA = a;
+        int tempB = b;
+        for (int i = 0; i < size; i++) {
+            if (playFieldCpu[tempA][tempB] != '~') {
+                return false;
+            }
+            switch (c) {
+                case 0:
+                    tempA--;
+                    break;
+                case 1:
+                    tempA++;
+                    break;
+                case 2:
+                    tempB++;
+                    break;
+                case 3:
+                    tempB--;
+                    break;
+            }
+        }
+        return true;
     }
 }
-
