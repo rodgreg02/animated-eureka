@@ -21,6 +21,8 @@ public class Playfield {
 
         int counter = 0;
         int counter1 = 0;
+        System.out.print("\033[H\033[2J");
+        System.out.flush();
         String BLUE_BRIGHT = "\033[0;94m";
         String ANSI_RESET = "\u001B[0m";
         System.out.println("CPU's Ocean:");
@@ -28,10 +30,13 @@ public class Playfield {
             System.out.println("");
             System.out.print("|---|---|---|---|---|---|---|---|---|---|\n");
             for (int j = 0; j < playFieldCpu[i].length; j++) {
+                String color = BLUE_BRIGHT;
                 char hiddenCpu = '~';
                 if(playFieldCpu[i][j] == 'O'){hiddenCpu = 'O';}
                 else if(playFieldCpu[i][j] == 'X'){hiddenCpu = 'X';}
-                System.out.print((j == 0) ? counter + " " + BLUE_BRIGHT + hiddenCpu + ANSI_RESET + " | " : "" + BLUE_BRIGHT + hiddenCpu  + ANSI_RESET + " | ");
+                if(hiddenCpu == 'X'){color = "\u001b[31m";} else if (hiddenCpu == 'O') {color = "\u001b[37m";}
+
+                System.out.print((j == 0) ? counter + " " + color + hiddenCpu + ANSI_RESET + " | " : "" + color + hiddenCpu  + ANSI_RESET + " | ");
             }
             System.out.print((i == 9) ? "\n| A | B | C | D | E | F | G | H | I | J |\n" : "");
             counter++;
@@ -42,7 +47,9 @@ public class Playfield {
             System.out.println("");
             System.out.print("|---|---|---|---|---|---|---|---|---|---|\n");
             for (int j = 0; j < playFieldPlr[i].length; j++) {
-                System.out.print((j == 0) ? counter1 + " " + BLUE_BRIGHT + playFieldPlr[i][j] + ANSI_RESET + " | " : "" + BLUE_BRIGHT + playFieldPlr[i][j] + ANSI_RESET + " | ");
+                String color = BLUE_BRIGHT;
+                if(playFieldPlr[i][j] == 'X'){color = "\u001b[31m";} else if (playFieldPlr[i][j] == 'O') {color = "\u001b[37m";}
+                System.out.print((j == 0) ? counter1 + " " + color + playFieldPlr[i][j] + ANSI_RESET + " | " : "" + color + playFieldPlr[i][j] + ANSI_RESET + " | ");
             }
             System.out.print((i == 9) ? "\n| A | B | C | D | E | F | G | H | I | J |" : "");
             counter1++;
