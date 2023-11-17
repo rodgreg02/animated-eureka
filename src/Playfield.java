@@ -18,6 +18,7 @@ public class Playfield {
     }
 
     public void drawField() {
+
         int counter = 0;
         int counter1 = 0;
         String BLUE_BRIGHT = "\033[0;94m";
@@ -27,7 +28,10 @@ public class Playfield {
             System.out.println("");
             System.out.print("|---|---|---|---|---|---|---|---|---|---|\n");
             for (int j = 0; j < playFieldCpu[i].length; j++) {
-                System.out.print((j == 0) ? counter + " " + BLUE_BRIGHT + playFieldCpu[i][j] + ANSI_RESET + " | " : "" + BLUE_BRIGHT + playFieldCpu[i][j] + ANSI_RESET + " | ");
+                char hiddenCpu = '~';
+                if(playFieldCpu[i][j] == 'O'){hiddenCpu = 'O';}
+                else if(playFieldCpu[i][j] == 'X'){hiddenCpu = 'X';}
+                System.out.print((j == 0) ? counter + " " + BLUE_BRIGHT + hiddenCpu + ANSI_RESET + " | " : "" + BLUE_BRIGHT + hiddenCpu  + ANSI_RESET + " | ");
             }
             System.out.print((i == 9) ? "\n| A | B | C | D | E | F | G | H | I | J |\n" : "");
             counter++;
