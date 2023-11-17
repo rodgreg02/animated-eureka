@@ -143,33 +143,38 @@ public class Moves extends Playfield {
                 System.out.println("Invalid coordinates Captain! Quickly please");
                 return null;
             }
-
-
             return coordArray1;
         }
     }
 
-    public boolean hitShip(String coord, char who) {
-        int[] coordArray1 = coordToIndex(coord);
-        if (who == '1') {
-            if (playFieldPlr[coordArray1[0]][coordArray1[1]] != 'X' || playFieldPlr[coordArray1[0]][coordArray1[1]] != 'O') {
-                if (playFieldPlr[coordArray1[0]][coordArray1[1]] == '~') {
-                    playFieldPlr[coordArray1[0]][coordArray1[1]] = 'O';
+    public boolean fireShip(String coord, char who, Playfield playfield,int[] cpu1) {
+
+        if (who == 'c') {
+
+            int[] coordArray2 = cpu1;
+            if (playfield.playFieldPlr[coordArray2[1]][coordArray2[0]] != 'X' || playfield.playFieldPlr[coordArray2[1]][coordArray2[0]] != 'O') {
+                if (playfield.playFieldPlr[coordArray2[1]][coordArray2[0]] == '~' || playfield.playFieldPlr[coordArray2[1]][coordArray2[0]] == 'O') {
+                    playfield.playFieldPlr[coordArray2[1]][coordArray2[0]] = 'O';
                     return false;
+                } else {
+                    playfield.playFieldPlr[coordArray2[1]][coordArray2[0]] = 'X';
+                    return true;
                 }
-                playFieldPlr[coordArray1[0]][coordArray1[1]] = 'X';
-                return true;
             }
         }
-        if (who == 'c') {
-            if (playFieldCpu[coordArray1[0]][coordArray1[1]] != 'X' || playFieldCpu[coordArray1[0]][coordArray1[1]] != 'O') {
-                if (playFieldCpu[coordArray1[0]][coordArray1[1]] == '~') {
-                    playFieldCpu[coordArray1[0]][coordArray1[1]] = 'O';
+        if (who == '1') {
+            int[] coordArray1 = coordToIndex(coord);
+            if (playfield.playFieldCpu[coordArray1[1]][coordArray1[0]] != 'X' || playfield.playFieldCpu[coordArray1[1]][coordArray1[0]] != 'O') {
+                if (playfield.playFieldCpu[coordArray1[1]][coordArray1[0]] == '~' || playfield.playFieldCpu[coordArray1[1]][coordArray1[0]] == 'O') {
+                    playfield.playFieldCpu[coordArray1[1]][coordArray1[0]] = 'O';
                     return false;
+                } else {
+                    playfield.playFieldCpu[coordArray1[1]][coordArray1[0]] = 'X';
+                    return true;
                 }
-                playFieldCpu[coordArray1[0]][coordArray1[1]] = 'X';
-                return true;
             }
-        } return false;
+        }
+        return false;
     }
+
 }
