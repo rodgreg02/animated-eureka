@@ -219,4 +219,29 @@ public class Playfield {
         }
         return true;
     }
+
+    public char checkVictory(Playfield playfield) {
+        int hitCounterPlr = 0;
+        int hitCounterCpu = 0;
+        for (int i = 0; i < playfield.playFieldCpu.length; i++) {
+            for (int j = 0; j < playfield.playFieldCpu.length; j++) {
+                if (playfield.playFieldCpu[i][j] == 'X') {
+                    hitCounterCpu++;
+                }
+            }
+        }
+        for (int i = 0; i < playfield.playFieldPlr.length; i++) {
+            for (int j = 0; j <playfield. playFieldPlr.length; j++) {
+                if (playfield.playFieldPlr[i][j] == 'X') {
+                    hitCounterCpu++;
+                }
+            }
+        }
+        if(hitCounterPlr == 17){
+            return 'c';
+        } else if (hitCounterCpu == 17) {
+            return '1';
+        }
+        return '0';
+    }
 }
