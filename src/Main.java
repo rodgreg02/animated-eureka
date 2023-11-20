@@ -39,6 +39,7 @@ public class Main {
         System.out.println("\nBoats are in position! Hostiles are setting up for attack! Combat positions!");
 
         while (!gameOver) {
+            playfield.countLives(playfield);
             System.out.println("Where should we fire Captain?");
             scanner.reset();
             boolean checkHitPlr;
@@ -58,7 +59,15 @@ public class Main {
 
 
             do{
-                int[] cpu1 = {rnd.nextInt(10), rnd.nextInt(10)};
+                int cord1 = 0;
+                int cord2 = 0;
+                boolean alreadyFiredIndex = false;
+                int[] cpu1 = {cord1,cord2};
+                 do{
+                    cord1 = rnd.nextInt(10);
+                    cord2 = rnd.nextInt(10);
+                    alreadyFiredIndex = cpu.checkTileCondition(cpu1, playfield);
+                }while(!alreadyFiredIndex);
                 checkHitCpu = cpu.fireShip("yee",'c',playfield,cpu1);
                 playfield.drawField();
                 System.out.println(checkHitCpu? "\nWe've been hit! Plug that hole!" : "\nSeems they've missed! Prepare a shell!");

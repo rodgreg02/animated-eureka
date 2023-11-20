@@ -147,7 +147,7 @@ public class Moves extends Playfield {
         }
     }
 
-    public boolean fireShip(String coord, char who, Playfield playfield,int[] cpu1) {
+    public boolean fireShip(String coord, char who, Playfield playfield, int[] cpu1) {
 
         if (who == 'c') {
 
@@ -177,4 +177,12 @@ public class Moves extends Playfield {
         return false;
     }
 
+    public boolean checkTileCondition(int[] coords, Playfield playfield) {
+        int a = coords[0];
+        int b = coords[1];
+        if (playfield.playFieldPlr[b][a] == 'X' || playfield.playFieldPlr[b][a] == 'O') {
+            return true;
+        }
+        return false;
+    }
 }

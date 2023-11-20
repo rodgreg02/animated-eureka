@@ -255,4 +255,36 @@ public class Playfield {
         }
         return '0';
     }
+    
+    public void countLives(Playfield playfield){
+        int aircraftCarrierLives = 0;
+        int battleShipLives = 0;
+        int cruiserLives = 0;
+        int submarineLives = 0;
+        int destroyerLives = 0;
+        for (int i = 0; i < playfield.playFieldPlr.length; i++) {
+            for (int j = 0; j < playfield.playFieldPlr.length; j++) {
+                if (playfield.playFieldPlr[i][j] == 'A') {
+                    aircraftCarrierLives++;
+                }
+                if (playfield.playFieldPlr[i][j] == 'B') {
+                    battleShipLives++;
+                }
+                if (playfield.playFieldPlr[i][j] == 'C') {
+                    cruiserLives++;
+                }
+                if (playfield.playFieldPlr[i][j] == 'S') {
+                    submarineLives++;
+                }
+                if (playfield.playFieldPlr[i][j] == 'D') {
+                    destroyerLives++;
+                }
+            }
+        }
+        System.out.println("Aircraft carrier: " + aircraftCarrierLives + "/5");
+        System.out.println("Battleship: " + battleShipLives + "/4");
+        System.out.println("Cruiser: " + cruiserLives + "/3");
+        System.out.println("Submarine: " + submarineLives + "/3");
+        System.out.println("Destroyer: " + destroyerLives + "/2");
+    }
 }
