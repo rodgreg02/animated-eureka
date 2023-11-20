@@ -181,8 +181,8 @@ public class Moves extends Playfield {
         int a = coords[0];
         int b = coords[1];
         if (playfield.playFieldPlr[b][a] == 'X' || playfield.playFieldPlr[b][a] == 'O') {
-            return true;
+            return false;
         }
-        return false;
+        return true;
     }
 }
