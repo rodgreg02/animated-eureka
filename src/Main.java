@@ -59,13 +59,12 @@ public class Main {
 
 
             do{
-                int cord1 = 0;
-                int cord2 = 0;
+
                 boolean alreadyFiredIndex = false;
-                int[] cpu1 = {cord1,cord2};
+                int[] cpu1 = {0,0};
                  do{
-                    cord1 = rnd.nextInt(10);
-                    cord2 = rnd.nextInt(10);
+                    cpu1[1] = rnd.nextInt(10);
+                    cpu1[0] = rnd.nextInt(10);
                     alreadyFiredIndex = cpu.checkTileCondition(cpu1, playfield);
                 }while(!alreadyFiredIndex);
                 checkHitCpu = cpu.fireShip("yee",'c',playfield,cpu1);
