@@ -1,65 +1,106 @@
 import java.util.Scanner;
 public class PvP {
     static public void play(){
+        char[][] player1Board = new char[10][10];
+        char[][] player2Board = new char[10][10];
+        initializeBoard(player1Board);
+        initializeBoard(player2Board);
 
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Player 1, place your ships.");
+        placeShips(player1Board, scanner);
 
-                Scanner scanner = new Scanner(System.in);
-                boolean gameOver = false;
+        System.out.println("Player 2, place your ships.");
+        placeShips(player2Board, scanner);
 
-                Player player1 = new Player("Player 1");
-                Player player2 = new Player("Player 2");
+        playGame(player1Board, player2Board, scanner);
+        scanner.close();
+    }
 
-                Playfield playfield1 = new Playfield();
-                Playfield playfield2 = new Playfield();
-                playfield1.createField();
-                playfield2.createField();
-
-                int i = 0;
-
-                // Placing ships for both players
-                while (i < 5) {
-                    System.out.println("\nPlayer 1: Insert coordinates to place ship.");
-                    System.out.println("The ship you're setting needs " + player1.playerBoats[i].size + " spaces");
-                    int[] coords = player1.setShips(player1.playerBoats, scanner.next(), i);
-                    playfield1.placeShip(coords, i, player1.playerBoats, '1');
-
-                    System.out.println("\nPlayer 2: Insert coordinates to place ship.");
-                    System.out.println("The ship you're setting needs " + player2.playerBoats[i].size + " spaces");
-                    int[] coords2 = player2.setShips(player2.playerBoats, scanner.next(), i);
-                    playfield2.placeShip(coords2, i, player2.playerBoats, '2');
-
-                    playfield1.drawField();
-                    playfield2.drawField();
-                    i++;
-                }
-
-                System.out.println("\nBoats are in position! Let the battle begin!");
-
-                while (!gameOver) {
-                    System.out.println("\nPlayer 1's turn.");
-                    System.out.println("Player 1: Where should we fire?");
-                    boolean checkHitPlr1 = player1.fireShip(scanner.next(), '2', playfield2, null);
-                    playfield2.drawField();
-
-                    if (playfield2.checkVictory(playfield2) == '1') {
-                        System.out.println("Player 1 wins!");
-                        gameOver = true;
-                        break;
-                    }
-
-                    System.out.println("\nPlayer 2's turn.");
-                    System.out.println("Player 2: Where should we fire?");
-                    boolean checkHitPlr2 = player2.fireShip(scanner.next(), '1', playfield1, null);
-                    playfield1.drawField();
-
-                    if (playfield1.checkVictory(playfield1) == '2') {
-                        System.out.println("Player 2 wins!");
-                        gameOver = true;
-                        break;
-                    }
-                }
-
-                System.out.println("Game over!");
+    private static void initializeBoard(char[][] board) {
+        for (int i = 0; i < 10; i++) {
+            for (int j = 0; j < 10; j++) {
+                board[i][j] = '~'; // Represents empty sea
             }
+        }
+    }
+
+    private static void printBoard(char[][] board) {
+        for (char[] row : board) {
+            for (char cell : row) {
+                System.out.print(cell + " ");
+            }
+            System.out.println();
+        }
+    }
+
+    private static void placeShips(char[][] board, Scanner scanner) {
+        int numShips = 5; // Assuming 5 ships
+        while (numShips > 0) {
+            System.out.println("Enter ship coordinates (row and column):");
+            int row = scanner.nextInt();
+            int col = scanner.nextInt();
+
+            if (row >= 0 && row < 10 && col >= 0 && col < 10 && board[row][col] == '~') {
+                board[row][col] = 'O'; // Represents a ship
+                numShips--;
+            } else {
+                System.out.println("Invalid coordinates or ship already there. Try again.");
+            }
+        }
+        System.out.println("All ships placed!");
+        printBoard(board);
+    }
+
+    private static void playGame(char[][] player1Board, char[][] player2Board, Scanner scanner) {
+        boolean player1Turn = true;
+        while (!gameOver(player1Board) && !gameOver(player2Board)) {
+            if (player1Turn) {
+                System.out.println("Player 1's turn. Enter target coordinates:");
+                int row = scanner.nextInt();
+                int col = scanner.nextInt();
+                processShot(row, col, player2Board);
+                printBoard(player2Board);
+            } else {
+                System.out.println("Player 2's turn. Enter target coordinates:");
+                int row = scanner.nextInt();
+                int col = scanner.nextInt();
+                processShot(row, col, player1Board);
+                printBoard(player1Board);
+            }
+            player1Turn = !player1Turn;
+        }
+        if (gameOver(player1Board)) {
+            System.out.println("Player 2 wins! Congratulations!");
+        } else {
+            System.out.println("Player 1 wins! Congratulations!");
+        }
+    }
+
+    private static void processShot(int row, int col, char[][] board) {
+        if (row >= 0 && row < 10 && col >= 0 && col < 10) {
+            if (board[row][col] == 'O') {
+                System.out.println("Hit!");
+                board[row][col] = 'X'; // Mark as hit
+            } else {
+                System.out.println("Miss!");
+            }
+        } else {
+            System.out.println("Invalid coordinates.");
+        }
+    }
+
+    private static boolean gameOver(char[][] board) {
+        for (char[] row : board) {
+            for (char cell : row) {
+                if (cell == 'O') {
+                    return false; // Not all ships have been sunk
+                }
+            }
+        }
+        return true; // All ships have been sunk
+    }
+
+
         }
 
