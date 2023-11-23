@@ -1,6 +1,6 @@
 public class Moves extends Playfield {
 
-    public Boat[] addShipTypes() {
+    static public Boat[] addShipTypes() {
         Boat[] defaultBoats = new Boat[5];
         for (int i = 0; i <= 4; i++) {
             switch (i) {
