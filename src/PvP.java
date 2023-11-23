@@ -83,7 +83,7 @@ public class PvP {
             }
             for (int i = startCol; i < startCol + size; i++) {
                 if (board[startRow][i] != '~') {
-                    return false; // Cell already occupied
+                    return false;
                 }
             }
         } else if (orientation.equalsIgnoreCase("V")) {
@@ -92,11 +92,11 @@ public class PvP {
             }
             for (int i = startRow; i < startRow + size; i++) {
                 if (board[i][startCol] != '~') {
-                    return false; // Cell already occupied
+                    return false;
                 }
             }
         } else {
-            return false; // Invalid orientation
+            return false;
         }
         return true;
     }
